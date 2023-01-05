@@ -1,5 +1,20 @@
 body,
 html {
-    background-color: #161616;
+    scrollbar-width: 0px;
+    /* background-color: #161616; */
+    background-image: url("/bg.jpg");
+    background-size: cover;
     color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+} 
