@@ -1,10 +1,37 @@
 <script>
 
-    // +layout.svelte
+    // route: " <layout> "
+    // file : " +layout.svelte "
+
+    import { writable } from 'svelte/store';
+
+    const user = writable({
+        username: "",
+    });
+
+    function handleFormSubmit() {
+        if ($user.username === "") {
+            alert('Username can\'t be empty!')
+        } else {
+            window.location.href = `/@${$user.username}`
+        }
+    }
 
 </script>
 
+<svelte:head>
+    <link rel="stylesheet" href="/global.css">
+</svelte:head>
+
+
 <div class="layout">
+    <nav>
+        <a href="/">Home</a>
+        <a href="/help">Help</a>
+        <form id="username-form" on:submit={handleFormSubmit}>
+            <input placeholder="username" bind:value={$user.username} />
+        </form>
+    </nav>
 
     <div class="content">
         <slot />
@@ -53,5 +80,29 @@
     p {
         color: rgba(255, 255, 255, 50%);
         text-align: center;
+    }
+
+    nav {
+        align-items: center;
+        width: 100vw;
+        height: 5vh;
+        display: flex;
+        flex-direction: row;
+    }
+
+    nav > #username-form {
+        margin-left: auto; 
+        margin-right: 2rem;
+    }
+
+    nav > a {
+        color: white;
+        margin: 16px;
+        text-decoration: none;
+        transition: all .25 ease;
+    }
+
+    nav > a:hover {
+        text-decoration: underline;
     }
 </style>
