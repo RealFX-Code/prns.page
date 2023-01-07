@@ -30,8 +30,8 @@
         white-space: nowrap;
     }
     p:hover {
-        /* height: calc(2.5vh*1.2);
-        font-size: calc(2.125vh*1.2); */
+        height: calc(2.5vh*1.1);
+        font-size: calc(2.125vh*1.1);
     }
     .flagLink {
         color: white;

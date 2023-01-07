@@ -1,9 +1,12 @@
 body,
 html {
+    overflow-x: hidden;
     scrollbar-width: 0px;
-    /* background-color: #161616; */
+    /* background-color: #161616;
     background-image: url("/bg.jpg");
-    background-size: cover;
+    background-size: cover; */
+    background: rgb(66,66,66);
+    background: linear-gradient(90deg, rgba(66,66,66,1) -3971%, rgba(22,22,22,1) 0%);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

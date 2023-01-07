@@ -3,9 +3,9 @@
     import Fa from 'svelte-fa/src/fa.svelte';
     import { faThumbsUp, faThumbsDown, faPeopleGroup, faHeart, faLaughSquint} from '@fortawesome/free-solid-svg-icons';
 
-    let yes      = faHeart;       // FontAwesome heart icon          - Pronouns.page "Yes"
-    let close    = faPeopleGroup; // FontAwesome people group icon   - Pronouns.page "Only if we're close"
-    let jokingly = faLaughSquint  // Font Awesome Laught Squint icon - Pronouns.page "Jokingly"
+    let yes      = faHeart;       // FontAwesome Heart Icon          - Pronouns.page "Yes"
+    let close    = faPeopleGroup; // FontAwesome People Group Icon   - Pronouns.page "Only if we're close"
+    let jokingly = faLaughSquint  // FontAwesome Laught Squint Icon  - Pronouns.page "Jokingly"
     let meh      = faThumbsUp;    // FontAwesome Thumbs Up Icon      - Pronouns.page "okay" / meh
     let no       = faThumbsDown;  // FontAwesome Thumbds Down Icon   - Pronouns.page "no"
 
@@ -32,7 +32,7 @@
 </div>
 
 <style>
-    div {
+    div.item {
         color: white;
         padding: 4px
     }

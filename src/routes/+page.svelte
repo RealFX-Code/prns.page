@@ -4,7 +4,6 @@
 
     import ListItemComponent from '../components/ListItemComponent.svelte'
     import FlagComponent from "../components/FlagComponent.svelte";
-	import { element } from "svelte/internal";
 
     let config = {
         username: "sometime" // Vaild pronouns.page username
@@ -13,10 +12,13 @@
     let data;
 
     onMount(async function() {
-
         const response = await fetch(`https://pronouns.page/api/profile/get/${config.username}?version=2`);
-
         data = await response.json();
+
+        if (Array(data?.profiles?.en?.words).length > 4)
+        {
+            console.warn(`${config.username} has more than 4 words categories, this is un-tested!`)
+        }
 
     });
 
@@ -28,7 +30,12 @@
 
 <main>
     {#if data}
-        <h1 class="title">@{data?.username}</h1>
+        <div class="heading">
+            <div class="avatar">
+                <img class="image" src="{data?.avatarSource}" alt="avatar">
+            </div>
+            <h1 class="title">@{data?.username}</h1>
+        </div>
         <h2 class="bio">{data?.profiles?.en?.description}</h2>
         <div class="container">
             <div class="child names">
@@ -100,13 +107,27 @@
                 {/if}
             </div>
         </div>
-        <div class="spacer" />
     {:else}
         <h1>Loading...</h1>
     {/if}
 </main>
 
 <style>
+
+    div.avatar > .image {
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    div.avatar {
+        height: 6rem;
+    }
+
+    div.heading {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
     .title {
         padding-left: 1rem;
@@ -120,17 +141,15 @@
 
     a {
         color: #9977ff;
+        text-decoration: none;
         font-size: 16px;
         letter-spacing: 0.016em;
         transition: all .25s ease
     }
 
     a:hover {
-        letter-spacing: 0.032em;
-    }
-
-    a:visited {
-        color: rgb(67, 62, 112);
+        letter-spacing: 0.025em;
+        text-decoration: underline;
     }
 
     .flagContainer {
@@ -157,7 +176,7 @@
     .container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         grid-column-gap: 16px;
         grid-row-gap: 16px;
     }
@@ -172,8 +191,14 @@
         }
     }
 
-    .spacer {
-        height: 200px;
+    @media only screen and (max-width: 580px) {
+        .container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(9, 1fr);
+            grid-column-gap: 16px;
+            grid-row-gap: 16px;
+        }
     }
 
 </style>
