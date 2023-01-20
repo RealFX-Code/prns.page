@@ -2,6 +2,7 @@
 
     import Fa from 'svelte-fa/src/fa.svelte';
     import { faThumbsUp, faThumbsDown, faPeopleGroup, faHeart, faLaughSquint} from '@fortawesome/free-solid-svg-icons';
+	import { element } from 'svelte/internal';
 
     let yes      = faHeart;       // FontAwesome Heart Icon          - Pronouns.page "Yes"
     let close    = faPeopleGroup; // FontAwesome People Group Icon   - Pronouns.page "Only if we're close"
@@ -12,9 +13,22 @@
     export let Value;
     export let Opinion;
 
+    let Title = (opinion) => {
+        let opinionList = [
+            {"opinion": "yes",      "lang":"Yes"                    },
+            {"opinion": "close",    "lang":"Only if we\'re close"   },
+            {"opinion": "jokingly", "lang":"Jokingly"               },
+            {"opinion": "meh",      "lang":"Meh"                    },
+            {"opinion": "no",       "lang":"No"                     }
+        ];
+        return (
+            opinionList.find(element => element.opinion === opinion).lang
+        );
+    }
+
 </script>
 
-<div class="item">
+<div class="item" title="{Title(Opinion)}">
     {#if Opinion == "yes"}
         <Fa icon={yes} />
     {:else if Opinion == "close"}
