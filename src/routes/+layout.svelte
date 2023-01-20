@@ -13,9 +13,28 @@
         if ($user.username === "") {
             alert('Username can\'t be empty!')
         } else {
+            if ($user.username.startsWith("@")) {
+                
+                window.location.href = `/${$user.username}`
+            }
             window.location.href = `/@${$user.username}`
         }
     }
+
+    const links = [
+        {
+            "label":"Home",
+            "link":"/"
+        },
+        {
+            "label":"Inclusivity",
+            "link":"/inclusivity"
+        },
+        {
+            "label":"Help",
+            "link":"/help"
+        }
+    ];
 
 </script>
 
@@ -23,20 +42,18 @@
     <link rel="stylesheet" href="/global.css">
 </svelte:head>
 
-
 <div class="layout">
     <nav>
-        <a href="/">Home</a>
-        <a href="/help">Help</a>
+        {#each links as link}
+            <a href="{link.link}">{link.label}</a>
+        {/each}
         <form id="username-form" on:submit={handleFormSubmit}>
             <input placeholder="username" bind:value={$user.username} />
         </form>
     </nav>
-
     <div class="content">
         <slot />
     </div>
-
     <footer>
         <div class="contrib">
             <p><span class="color">Contributor? &rightarrow;</span>
@@ -104,5 +121,8 @@
 
     nav > a:hover {
         text-decoration: underline;
+    }
+    footer {
+        margin: 4rem auto;
     }
 </style>
