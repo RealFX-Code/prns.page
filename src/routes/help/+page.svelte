@@ -8,27 +8,29 @@
 <main>
     <h1>prns.page</h1>
     <div class="wiki">
-        <h2>
-            Usage
-        </h2>
-        <div class="section usage">
-            <h3>Specific user:</h3>
-            <p>
-                To get the page of a specific user: <br>
-                Simply navigate to the url below,<br>
-                Where "username" is the username of the user.<br>
-            </p>
-            <code>
-                https://prns.realfx.rocks/@username
-            </code>
-        </div>
-        <div class="section usage">
-            <h3>Using Search Bar:</h3>
-            <p>
-                To get a user's pronouns.page put into here,<br>
-                You put their username into the search bar in the navbar<br>
-                and then hit enter.<br>
-            </p>
+        <div class="section head">
+            <h2 id="profile">
+                Profile View
+            </h2>
+            <div class="section usage">
+                <h3>Specific user:</h3>
+                <p>
+                    To get the page of a specific user: <br>
+                    Simply navigate to the url below,<br>
+                    Where "username" is the username of the user.<br>
+                </p>
+                <code>
+                    https://prns.realfx.rocks/@username
+                </code>
+            </div>
+            <div class="section usage">
+                <h3>Using Search Bar:</h3>
+                <p>
+                    To get a user's pronouns.page put into here,<br>
+                    You put their username into the search bar in the navbar<br>
+                    and then hit enter.<br>
+                </p>
+            </div>
         </div>
     </div>
 </main>
@@ -55,10 +57,14 @@
         flex-direction: column;
         align-items: center;
         border-radius: 16px;
-        border: 1px solid #424242;
+        border: 1px solid #323232;
         width: 65vw;
         margin: 2rem auto;
         padding: 2rem;
+    }
+
+    .section .usage {
+        width: fit-content;
     }
 
     p {
