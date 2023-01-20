@@ -13,12 +13,6 @@
     onMount(async function() {
         const response = await fetch(`https://pronouns.page/api/profile/get/${data.params.username}?version=2`);
         prns = await response.json();
-
-        if (Array(prns?.profiles?.en?.words).length > 4)
-        {
-            console.warn(`${config.username} has more than 4 words categories, this is un-tested!`)
-        }
-
     });
 
 </script>
@@ -93,12 +87,12 @@
                 {#if prns?.profiles?.en?.card}
                     <a href="{prns?.profiles?.en?.card}">Light Mode</a>
                 {:else}
-                    <p style="text-decoration:line-through">Light Mode</p>
+                    <p class="unavailable" title="unavailable">Light Mode</p>
                 {/if}
                 {#if prns?.profiles?.en?.cardDark}
                     <a href="{prns?.profiles?.en?.cardDark}">Dark Mode</a>
                 {:else}
-                    <p style="text-decoration:line-through">Dark Mode</p>
+                    <p class="unavailable" title="unavailable">Dark Mode</p>
                 {/if}
             </div>
         </div>
@@ -108,6 +102,10 @@
 </main>
 
 <style>
+
+    .unavailable {
+        text-decoration: line-through;
+    }
 
     #loading {
         text-align: center;
@@ -176,7 +174,7 @@
     .container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(10, fit-content); /* 3, 1fr */
         grid-column-gap: 16px;
         grid-row-gap: 16px;
     }
@@ -185,7 +183,7 @@
         .container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(5, 1fr);
+            grid-template-rows: repeat(12, fit-content); /* 5, 1fr */
             grid-column-gap: 16px;
             grid-row-gap: 16px;
         }
@@ -195,7 +193,7 @@
         .container {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            grid-template-rows: repeat(9, 1fr);
+            grid-template-rows: repeat(14, fit-content); /* 9, 1fr */
             grid-column-gap: 16px;
             grid-row-gap: 16px;
         }
