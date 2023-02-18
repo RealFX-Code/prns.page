@@ -13,10 +13,6 @@
         if ($user.username === "") {
             alert('Username can\'t be empty!')
         } else {
-            if ($user.username.startsWith("@")) {
-                
-                window.location.href = `/${$user.username}`
-            }
             window.location.href = `/@${$user.username}`
         }
     }
