@@ -3,11 +3,6 @@
     // route: " /inclusivity "
     // file : " inclusivity/+page.svelte "
 
-	import { json } from "@sveltejs/kit";
-
-    /** @type {import('./$types').PageData} */
-    export let data;
-
     import { page } from '$app/stores';
 
     import { onMount } from "svelte";
@@ -24,16 +19,11 @@
         {
             let tempShow = `#id-${$page.url.searchParams.get('show')}`
             $page.url.searchParams.delete('show');
-            let wait = (ms,fun) => {
-                setTimeout(
-                    () => {
-                        fun()
-                    },
-                    ms);
-            };
-            wait(460, ()=>{
+
+            setTimeout(()=>{
                 window.location.href = tempShow;
-            });
+            },460)
+
         }
     });
 
@@ -73,7 +63,7 @@
             </div>
         {/each}
     {:else}
-        <h1>Loading, sit tight!</h1>
+        <h1>Loading...</h1>
     {/if}
 </main>
 
