@@ -1,5 +1,8 @@
 <script>
 
+    // route: " /@[username]"
+    // file : " /@[username]/+page.svelte "
+
     /** @type {import('./$types').Pagedata} */
     export let data;
 
@@ -59,14 +62,21 @@
                     <a href="{Link}">
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <img id="icon1"
+                            alt="{(new URL(Link)).hostname}'s Icon"
                             src="http://{(new URL(Link)).hostname}/favicon.png"
                             height="16px"
                             onerror="(document.getElementById('icon1')).remove();">
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <img id="icon2"
+                            alt="{(new URL(Link)).hostname}'s Icon"
                             src="http://{(new URL(Link)).hostname}/favicon.ico"
                             height="16px"
                             onerror="(document.getElementById('icon2')).remove();">
+                        <img id="icon3"
+                            alt="{(new URL(Link)).hostname}'s Icon"
+                            src="http://{(new URL(Link)).hostname}/favicon.svg"
+                            height="16px"
+                            onerror="(document.getElementById('icon3')).remove();">
                         {Link}
                     </a>
                     <br>
@@ -135,6 +145,7 @@
 
     .bio {
         margin: 2rem 1rem;
+        text-align: left;
     }
 
     a {
@@ -196,6 +207,16 @@
             grid-template-rows: repeat(14, fit-content); /* 9, 1fr */
             grid-column-gap: 16px;
             grid-row-gap: 16px;
+        }
+        div.heading {
+            flex-direction: column;
+        }
+        .title {
+            font-size: 2rem;
+            padding-left: 0;
+        }
+        .bio {
+            text-align: center;
         }
     }
 
