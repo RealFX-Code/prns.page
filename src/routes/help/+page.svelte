@@ -8,44 +8,35 @@
 <main>
     <h1>prns.page</h1>
     <div class="wiki">
-        <div class="section head">
-            <h2 id="profile">
-                Profile View
-            </h2>
-            <div class="section usage">
-                <h3>Specific user:</h3>
-                <p>
-                    To get the page of a specific user: <br>
-                    Simply navigate to the url below,<br>
-                    Where "username" is the username of the user.<br>
-                </p>
-                <code>
-                    https://prns.realfx.rocks/@username
-                </code>
-            </div>
-            <div class="section usage">
-                <h3>Using Search Bar:</h3>
-                <p>
-                    To get a user's pronouns.page put into here,<br>
-                    You put their username into the search bar in the navbar<br>
-                    and then hit enter.<br>
-                </p>
-            </div>
+        <div class="section usage">
+            <h3>profile view of a specific user:</h3>
+            <p>
+                To get the page of a specific user
+                navigate to the url below, but replace
+                "username" with the users username.
+            </p>
+            <code>
+                {window.location.protocol}//{window.location.host}/@username
+            </code>
+        </div>
+        <div class="section usage">
+            <h3>Get a user's profile view from the username input:</h3>
+            <p>
+                Simply write the user's username in the username field in the navbar, then hit enter.
+
+                NOTE: Don't prepend an @ to the username!
+            </p>
         </div>
     </div>
 </main>
 
 <style>
-    h1, h2, h3, p {
+    h1, h3, p {
         text-align: center;
     }
 
     h1 {
         font-size: 6rem;
-    }
-
-    h2 {
-        font-size: 4rem;
     }
 
     h3 {
@@ -63,12 +54,8 @@
         padding: 2rem;
     }
 
-    .section .usage {
-        width: fit-content;
-    }
-
     p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     code {
