@@ -36,18 +36,6 @@
 </script>
 
 <main>
-    <!-- <script>
-        
-        (function(){
-            let searchParams = (new URL(window.location)).searchParams;
-    
-            let lang = "en"
-            
-            if (searchParams.has("lang")) {
-                lang = searchParams.get("lang");
-            }
-        })()
-    </script> -->
     {#if prns && langPrns}
         <div class="heading">
             <div class="avatar">
