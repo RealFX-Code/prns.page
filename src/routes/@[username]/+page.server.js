@@ -2,9 +2,8 @@
 
 export const load = (({ params }) => {
     return {
-        // return "params"
+        // return "params", this return is `data.*`
 
-        // params contains username, accessed via "data.username"
         params
     };
 });

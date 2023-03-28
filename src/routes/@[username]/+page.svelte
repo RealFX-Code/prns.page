@@ -7,49 +7,76 @@
     export let data;
 
     import { onMount } from "svelte";
+    import { page } from '$app/stores';
+    import { lang } from './../lang';
 
     import ListItemComponent from '../../components/ListItemComponent.svelte'
     import FlagComponent from "../../components/FlagComponent.svelte";
     
     let prns;
+    let langPrns;
+    let langUI;
 
     onMount(async function() {
+        let searchParams = (new URL($page.url.href)).searchParams;
+        langPrns = "en";
+        langUI = lang["en"];
+        if (searchParams.has("lang")) {
+            langPrns = searchParams.get("lang");
+            if ( lang[langPrns] ) {
+                langUI = lang[langPrns];
+            }
+        }
+        
         const response = await fetch(`https://pronouns.page/api/profile/get/${data.params.username}?version=2`);
         prns = await response.json();
     });
-
+    
+    
 </script>
 
 <main>
-    {#if prns}
+    <!-- <script>
+        
+        (function(){
+            let searchParams = (new URL(window.location)).searchParams;
+    
+            let lang = "en"
+            
+            if (searchParams.has("lang")) {
+                lang = searchParams.get("lang");
+            }
+        })()
+    </script> -->
+    {#if prns && langPrns}
         <div class="heading">
             <div class="avatar">
                 <img class="image" src="{prns?.avatarSource}" alt="avatar">
             </div>
             <h1 class="title">@{prns?.username}</h1>
         </div>
-        <h2 class="bio">{prns?.profiles?.en?.description}</h2>
+        <h2 class="bio">{prns?.profiles?.[langPrns]?.description}</h2>
         <div class="container">
             <div class="child names">
-                <h3>Names</h3>
-                {#each prns?.profiles?.en?.names as { value, opinion }, i}
+                <h3>{langUI.username.names}</h3>
+                {#each prns?.profiles?.[langPrns]?.names as { value, opinion }, i}
                     <ListItemComponent
                         Value={value}
                         Opinion={opinion} />
                 {/each}
             </div>
             <div class="child pronouns">
-                <h3>Pronouns</h3>
-                {#each prns?.profiles?.en?.pronouns as { value, opinion}, i}
+                <h3>{langUI.username.pronouns}</h3>
+                {#each prns?.profiles?.[langPrns]?.pronouns as { value, opinion}, i}
                     <ListItemComponent
                         Value={value}
                         Opinion={opinion} />
                 {/each}
             </div>
             <div class="child flags">
-                <h3>Flags</h3>
+                <h3>{langUI.username.flags}</h3>
                 <div class="flagContainer">
-                    {#each prns?.profiles?.en?.flags as Flag, i}
+                    {#each prns?.profiles?.[langPrns]?.flags as Flag, i}
                         <FlagComponent
                              flag={Flag} />
                         <br>
@@ -57,23 +84,24 @@
                 </div>
             </div>
             <div class="child links">
-                <h3>Links</h3>
-                {#each prns?.profiles?.en?.links as Link, i}
+                <h3>{langUI.username.links}</h3>
+                {#each prns?.profiles?.[langPrns]?.links as Link, i}
                     <a href="{Link}">
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <img id="icon1"
-                            alt="{(new URL(Link)).hostname}'s Icon"
+                            alt=""
                             src="http://{(new URL(Link)).hostname}/favicon.png"
                             height="16px"
                             onerror="(document.getElementById('icon1')).remove();">
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <img id="icon2"
-                            alt="{(new URL(Link)).hostname}'s Icon"
+                            alt=""
                             src="http://{(new URL(Link)).hostname}/favicon.ico"
                             height="16px"
                             onerror="(document.getElementById('icon2')).remove();">
+                        <!-- svelte-ignore a11y-missing-attribute -->
                         <img id="icon3"
-                            alt="{(new URL(Link)).hostname}'s Icon"
+                            alt=""
                             src="http://{(new URL(Link)).hostname}/favicon.svg"
                             height="16px"
                             onerror="(document.getElementById('icon3')).remove();">
@@ -82,32 +110,32 @@
                     <br>
                 {/each}
             </div>
-            {#each prns?.profiles?.en?.words as {Header, values}, i}
-            <div class="child words {Header}">
-                <h3>Words</h3>
-                {#each values as { value, opinion}, i}
-                <ListItemComponent
-                    Value={value}
-                    Opinion={opinion} />
-                {/each}
-            </div>
+            {#each prns?.profiles?.[langPrns]?.words as {Header, values}, i}
+                <div class="child words {Header}">
+                    <h3>{langUI.username.words}</h3>
+                    {#each values as { value, opinion}, i}
+                        <ListItemComponent
+                            Value={value}
+                            Opinion={opinion} />
+                    {/each}
+                </div>
             {/each}
             <div class="child cards">
-                <h3>Card Images</h3>
-                {#if prns?.profiles?.en?.card}
-                    <a href="{prns?.profiles?.en?.card}">Light Mode</a>
+                <h3>{langUI.username.card.title}</h3>
+                {#if prns?.profiles?.[langPrns]?.card}
+                    <a href="{prns?.profiles?.[langPrns]?.card}">{langUI.username.card.light}</a>
                 {:else}
-                    <p class="unavailable" title="unavailable">Light Mode</p>
+                    <p class="unavailable" title="unavailable">{langUI.username.card.light}</p>
                 {/if}
-                {#if prns?.profiles?.en?.cardDark}
-                    <a href="{prns?.profiles?.en?.cardDark}">Dark Mode</a>
+                {#if prns?.profiles?.[langPrns]?.cardDark}
+                    <a href="{prns?.profiles?.[langPrns]?.cardDark}">{langUI.username.card.dark}</a>
                 {:else}
-                    <p class="unavailable" title="unavailable">Dark Mode</p>
+                    <p class="unavailable" title="unavailable">{langUI.username.card.dark}</p>
                 {/if}
             </div>
         </div>
     {:else}
-        <h1 id="loading">Loading...</h1>
+        <h1 id="loading">Loading</h1>
     {/if}
 </main>
 
