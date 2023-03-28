@@ -40,9 +40,7 @@
         let showDialog = function(){
             FullscreenDialogComponent.showContentWarningDialog()
         }
-
-        console.log(Array(prns?.profiles?.[langPrns]?.sensitive))
-
+        
         // check if `sensitive` array isn't empty, it's fucking wierd, i know.
         if ( Array(prns?.profiles?.[langPrns]?.sensitive)[0].length !== 0 ) {
             showDialog();
