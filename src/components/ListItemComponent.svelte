@@ -2,7 +2,6 @@
 
     import Fa from 'svelte-fa/src/fa.svelte';
     import { faThumbsUp, faThumbsDown, faPeopleGroup, faHeart, faLaughSquint} from '@fortawesome/free-solid-svg-icons';
-	import { element } from 'svelte/internal';
 
     let yes      = faHeart;       // FontAwesome Heart Icon          - Pronouns.page "Yes"
     let close    = faPeopleGroup; // FontAwesome People Group Icon   - Pronouns.page "Only if we're close"
