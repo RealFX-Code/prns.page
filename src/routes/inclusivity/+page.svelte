@@ -4,17 +4,23 @@
     // file : " inclusivity/+page.svelte "
 
     import { page } from '$app/stores';
-
+    import { lang } from '../lang';
     import { onMount } from "svelte";
+	import BackToTop from '../../components/BackToTop.svelte';
 
-	import BackToTop from "./../../components/BackToTop.svelte";
-
-    
+    let langUI;
     let terms;
     onMount(async function() {
         const response = await fetch('https://en.pronouns.page/api/inclusive');
         terms = await response.json();
         
+        langUI = lang["en"];
+        if ($page.url.searchParams.has("lang")) {
+            if ( lang[langPrns] ) {
+                langUI = lang[langPrns];
+            }
+        }
+
         if ($page.url.searchParams.has('show'))
         {
             let tempShow = `#id-${$page.url.searchParams.get('show')}`
@@ -34,10 +40,9 @@
 <main>
     {#if terms}
     <div class="title">
-        <h1>Inclusive terms</h1>
+        <h1>{langUI.inclusivity.title}</h1>
         <p>
-            Tons of terms used daily aren't as inclusive as you might think,
-            Here's a good list on substitutes to use instead;
+            {langUI.inclusivity.subtitle}
         </p>
     </div>
         {#each terms as term}
