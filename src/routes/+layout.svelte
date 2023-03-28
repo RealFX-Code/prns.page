@@ -39,6 +39,17 @@
 </svelte:head>
 
 <div class="layout">
+    <noscript>
+        <div class="wrapper" style="width: fit-content; margin: 0 25%; padding: 16px; border: 2px white solid;">
+            You need to enable JavaScript to use this site.
+            How to enable JavaScript: <a style="color: #7777ff;"href="https://enable-javascript.com/">https://enable-javascript.com/</a>
+            <div class="section" style="margin-top: 8px;">
+                <p style="color: rgba(255,255,255,0.75);">
+                    "JavaScript is for the cool people" -me
+                </p>
+            </div>
+        </div>
+    </noscript>
     <nav>
         {#each links as link}
             <a href="{link.link}">{link.label}</a>
