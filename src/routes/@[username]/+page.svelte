@@ -12,12 +12,16 @@
 
     import ListItemComponent from '../../components/ListItemComponent.svelte'
     import FlagComponent from "../../components/FlagComponent.svelte";
+    import FullscreenDialog from "../../components/FullscreenDialog.svelte";
     
     let prns;
     let langPrns;
     let langUI;
 
+    let FullscreenDialogComponent;
+
     onMount(async function() {
+        // Language
         let searchParams = (new URL($page.url.href)).searchParams;
         langPrns = "en";
         langUI = lang["en"];
@@ -28,12 +32,27 @@
             }
         }
         
+        // Actually get the card
         const response = await fetch(`https://pronouns.page/api/profile/get/${data.params.username}?version=2`);
         prns = await response.json();
+
+        // Content warning
+        let showDialog = function(){
+            FullscreenDialogComponent.showContentWarningDialog()
+        }
+
+        console.log(Array(prns?.profiles?.[langPrns]?.sensitive))
+
+        // check if `sensitive` array isn't empty, it's fucking wierd, i know.
+        if ( Array(prns?.profiles?.[langPrns]?.sensitive)[0].length !== 0 ) {
+            showDialog();
+        }
+
     });
-    
-    
+
 </script>
+
+<FullscreenDialog bind:this={FullscreenDialogComponent} />
 
 <main>
     {#if prns && langPrns}
