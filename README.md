@@ -1,4 +1,5 @@
 # prns.realfx.rocks
+
 An alternate front-end for pronouns.page!
 
 Writting entirely in Svelte-Kit!
@@ -13,6 +14,7 @@ Writting entirely in Svelte-Kit!
 ### Installing dependencies
 
 Using npm, install all dependencies:
+
 ```bash
 $ npm i
 ```
