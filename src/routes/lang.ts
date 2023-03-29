@@ -1,4 +1,6 @@
-interface language {
+import { en } from './lang/en';
+
+export interface language {
 	username: {
 		names: string;
 		pronouns: string;
@@ -22,46 +24,35 @@ interface language {
 	loading: string;
 }
 
-interface lang {
+export interface langInterface {
+	de?: language;
 	en: language;
+	eo?: language;
 	es?: language;
+	fr?: language;
+	gl?: language;
+	it?: language;
 	ja?: language;
+	ko?: language;
 	lad?: language;
+	nl?: language
+	no?: language;
 	pl?: language;
 	pt?: language;
 	ro?: language;
 	ru?: language;
 	sv?: language;
+	tok?: language;
+	tr?: language;
 	ua?: language;
 	vi?: language;
+	yi?: language;
+	zh?: language;
 }
 
 // TODO: add translations for all languages avaiable in the "lang" interface.
-let lang: lang = {
-	en: {
-		username: {
-			names: 'Names',
-			pronouns: 'Pronouns',
-			flags: 'Flags',
-			links: 'Links',
-			words: 'Words',
-			card: {
-				title: 'Card Image',
-				dark: 'Dark Card',
-				light: 'Light Card'
-			}
-		},
-		inclusivity: {
-			title: 'Inclusive terms',
-			subtitle:
-				"Tons of terms used daily aren't as inclusive as you might think, Here's a good list on substitutes to use instead;"
-		},
-		home: {
-			title: 'prns.realfx.rocks',
-			subtitle: 'An alternate front-end to <a href="https://pronouns.page/">prnouns.page</a>'
-		},
-		loading: 'Loading, Sit tight!'
-	}
+let lang: langInterface = {
+	en: en,
 };
 
 export { lang };
