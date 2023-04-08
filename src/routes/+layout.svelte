@@ -56,7 +56,8 @@
 			<a href={link.link}>{link.label}</a>
 		{/each}
 		<form id="username-form" on:submit={handleFormSubmit}>
-			<input placeholder="username" bind:value={$user.username} />
+			<label id="username-label" for="input">https://prns.realfx.rocks/@</label>
+			<input id="username-input" placeholder="username" bind:value={$user.username} />
 		</form>
 	</nav>
 	<div class="content">
@@ -131,4 +132,29 @@
 	footer {
 		margin: 4rem auto;
 	}
+
+	#username-label {
+		margin-right: 0px;
+		padding-right: 0px;
+	}
+
+	#username-input {
+		border: 0px;
+		border-bottom: 1px white solid;
+		background-color: rgba(0,0,0,0);
+		color: white;
+		margin-left: 0px;
+		padding-left: 0px;;
+		transition: 1s ease all;
+	}
+
+	@media screen and (max-width: 700px) {
+
+		#username-label {
+			display: none;
+		}
+
+	}
+
+
 </style>
