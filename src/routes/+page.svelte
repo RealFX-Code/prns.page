@@ -1,6 +1,18 @@
 <script>
 	// route: " / "
 	// file : " +page.svelte "
+
+    import { page } from '$app/stores';
+
+	let fromCW = false;
+	const url = $page.url;
+
+	if ( url.searchParams.has("from") ) {
+		if ( url.searchParams.get("from") === "cw" ) {
+			fromCW = true;
+		}
+	}
+
 </script>
 
 <main>
@@ -15,22 +27,21 @@
 			</h2>
 		</div>
 	</div>
-	<!-- <div class="form">
-        <h3>Know of a username? Look it up!</h3>
-        <form on:submit={handleFormSubmit}>
-            <input
-                id="username-form"
-                placeholder="username"
-                bind:value={$user.username}>
-            <br>
-            <input type="submit">
-        </form>
-    </div> -->
+	<div class="content">
+		{#if fromCW}
+			<h3>You've just returned from a Content Warning.</h3>
+			<p>
+				Prnouns.page lets you put a content warning on your profile, And the profile you were trying to visit had a content warning.
+			</p>
+		{/if}
+	</div>
 </main>
 
 <style>
 	h1,
 	h2,
+	h3,
+	p,
 	a {
 		text-align: center;
 	}

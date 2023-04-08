@@ -4,37 +4,45 @@
 	let dialogTitle = '';
 	let dialogText = '';
 	let dialogOptions = [];
+	let dialogTriggers = []; 
+
+	export function closeDialog() {
+		dialogOpen = false;
+	}
 
 	/**
 	 *
 	 * @param title
 	 * @param text
 	 * @param options
+	 * @param triggers
 	 */
 	export function showContentWarningDialog(
 		title = 'Content Warning',
 		text = 'The following profile contains potentially disturbing content.',
 		options = [
 			{
-				label: 'Continue',
+				label: 'Go back',
+				id: 'back',
 				function: function () {
-					dialogOpen = false;
+					window.location.href = window.location.protocol + '//' + window.location.host + "/?from=cw";
 				}
 			},
 			{
-				label: 'Go back',
+				label: 'Continue',
+				id: 'continue',
 				function: function () {
-					window.location.href = window.location.protocol + '//' + window.location.host;
+					// closing logic goes here
 				}
-			}
-		]
+			},
+		],
+		triggers=[]
 	) {
-		if (!dialogOpen) {
-			dialogOpen = true;
-		}
+		dialogOpen = !dialogOpen
 		dialogTitle = title;
 		dialogText = text;
 		dialogOptions = options;
+		dialogTriggers = triggers
 	}
 </script>
 
@@ -43,11 +51,20 @@
 		<div class="dialog">
 			<h1>{dialogTitle}</h1>
 			<p>{dialogText}</p>
+			<div class="triggers">
+				<ul>
+					{#each dialogTriggers as trigger }
+						<li>{trigger}</li>
+					{/each}
+				</ul>
+			</div>
 			<div class="buttons">
 				{#each dialogOptions as dialogOptionObj}
-					<button on:click={dialogOptionObj.function}>
-						{dialogOptionObj.label}
-					</button>
+					<div class="button {dialogOptionObj.id}">
+						<button id={dialogOptionObj.id} on:click={dialogOptionObj.function}>
+							{dialogOptionObj.label}
+						</button>
+					</div>
 				{/each}
 			</div>
 		</div>
@@ -70,25 +87,24 @@
 
 	.dialog {
 		position: absolute;
-		width: fit-content;
+		width: 25rem;
 		height: fit-content;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		margin: 0;
 		background-color: #1b1b1b;
-		border-radius: 16px;
+		/* border-radius: 16px; */
 		border: solid 2px #525252;
 		padding: 24px;
 		background: rgba(66, 66, 66, 0.29);
-		border-radius: 16px;
 		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 		backdrop-filter: blur(6.7px);
 		-webkit-backdrop-filter: blur(6.7px);
 		border: 1px solid rgb(49, 49, 49);
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: repeat(3, 1fr);
+		grid-template-rows: repeat(4, 1fr);
 		grid-column-gap: 0px;
 		grid-row-gap: 0px;
 	}
@@ -103,53 +119,56 @@
 
 	.dialog > h1,
 	.dialog > p,
-	.dialog > .buttons > button {
+	.dialog > .triggers > ul > li,
+	.dialog > .buttons > .button > button {
+		margin-left: unset;
 		margin-top: 16px;
 		margin-bottom: 16px;
 	}
 
-	/* button {
-        border: 2px solid white;
-        align-items: center;
-        background-color: transparent;
-        color: #fff;
-        cursor: pointer;
-        font-weight: 700;
-        line-height: 1.5;
-        text-decoration: none;
-        text-transform: uppercase;
-        outline: 0;
-        padding: 0px 20px 0px 20px;
-        margin: 0 auto;
-        width: fit-content;
-        transition: all .42s cubic-bezier(.25,.8,.25,1);
-    }
-
-    button:hover {
-        transform: scale(1.1);
-        text-decoration: underline;
-    } */
-
+	.button {
+		margin: 0 auto;
+		display: flex; /* Use flexbox layout */
+  		justify-content: center; /* Center horizontally */
+  		align-items: center; /* Center vertically */
+	}
+	
 	button {
-		background-color: #1b1b1b;
 		border-radius: 16px;
 		border: solid 2px #525252;
-		padding: 24px;
 		background: rgba(66, 66, 66, 0.29);
-		border-radius: 16px;
-		align-items: center;
 		color: #fff;
 		cursor: pointer;
 		line-height: 1.5;
 		text-decoration: none;
-		outline: 0;
-		padding: 0px 20px 0px 20px;
 		margin: 0 auto;
-		width: fit-content;
 		transition: all 0.42s cubic-bezier(0.25, 0.8, 0.25, 1);
+		padding: 8px 16px;
+		height: fit-content;
+		width: fit-content;
 	}
 	button:hover {
 		transform: scale(1.1);
 		text-decoration: underline;
 	}
+
+	#continue {
+		border-color: #52a552;
+	}
+
+	#back {
+		border-color: #a55252;
+	}
+
+	@media screen and (max-width: 512px) {
+		.dialog {
+			width: 100%;
+		}
+		.dialog > h1,
+		.dialog > p,
+		.dialog > .triggers > ul > li {
+			margin-left: 16px;
+		}
+	}
+
 </style>

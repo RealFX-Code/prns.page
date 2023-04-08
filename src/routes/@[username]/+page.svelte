@@ -4,6 +4,7 @@
 
 	/** @type {import('./$types').Pagedata} */
 	export let data;
+	const username = data.params.username;
 
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -33,18 +34,48 @@
 
 		// Actually get the card
 		const response = await fetch(
-			`https://pronouns.page/api/profile/get/${data.params.username}?version=2`
+			`https://pronouns.page/api/profile/get/${username}?version=2`
 		);
 		prns = await response.json();
 
 		// Content warning
-		let showDialog = function () {
-			FullscreenDialogComponent.showContentWarningDialog();
+		let showDialog = function (title, text, options, triggers) {
+			FullscreenDialogComponent.showContentWarningDialog(
+				title,
+				text,
+				options,
+				triggers
+			);
 		};
 
+		let closeDialog = function(){
+			FullscreenDialogComponent.closeDialog();
+		}
+
 		// check if `sensitive` array isn't empty, it's fucking wierd, i know.
+
 		if (Array(prns?.profiles?.[langPrns]?.sensitive)[0].length !== 0) {
-			showDialog();
+			showDialog(
+				"Content Warning",
+				"This profile contains the following content warnings:",
+				[
+					{
+						label: 'Go back',
+						id: 'back',
+						function: function () {
+							window.location.href = window.location.protocol + '//' + window.location.host + "/?from=cw";
+						}
+					},
+					{
+						label: 'Continue',
+						id: 'continue',
+						function: function () {
+							closeDialog();
+						}
+					},
+				],
+				prns?.profiles?.[langPrns]?.sensitive
+			);
 		}
 	});
 </script>
