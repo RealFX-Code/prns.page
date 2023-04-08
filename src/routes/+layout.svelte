@@ -31,13 +31,19 @@
 		}
 	];
 
-	setInterval(function(){
-		console.log("You seem to know what you're doing, Why not look at some code? It's more readable than whatever you'll find here... https://github.com/RealFX-Code/prns.page")
-	}, 1000);
 </script>
 
 <svelte:head>
 	<link rel="stylesheet" href="/global.css" />
+	<script type="text/javascript">
+		!function(){
+			setInterval(function(){
+				console.log(
+					"You seem to know what you're doing, Why not look at some code? It's more readable than whatever you'll find here... https://github.com/RealFX-Code/prns.page"
+				)
+			},1000);
+		}()
+	</script>
 </svelte:head>
 
 <div class="layout">
