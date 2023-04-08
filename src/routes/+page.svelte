@@ -2,17 +2,16 @@
 	// route: " / "
 	// file : " +page.svelte "
 
-    import { page } from '$app/stores';
+	import { page } from '$app/stores';
 
 	let fromCW = false;
 	const url = $page.url;
 
-	if ( url.searchParams.has("from") ) {
-		if ( url.searchParams.get("from") === "cw" ) {
+	if (url.searchParams.has('from')) {
+		if (url.searchParams.get('from') === 'cw') {
 			fromCW = true;
 		}
 	}
-
 </script>
 
 <main>
@@ -31,7 +30,8 @@
 		{#if fromCW}
 			<h3>You've just returned from a Content Warning.</h3>
 			<p>
-				Prnouns.page lets you put a content warning on your profile, And the profile you were trying to visit had a content warning.
+				Prnouns.page lets you put a content warning on your profile, And the profile you were trying
+				to visit had a content warning.
 			</p>
 		{/if}
 	</div>

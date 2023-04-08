@@ -4,7 +4,7 @@
 	let dialogTitle = '';
 	let dialogText = '';
 	let dialogOptions = [];
-	let dialogTriggers = []; 
+	let dialogTriggers = [];
 
 	export function closeDialog() {
 		dialogOpen = false;
@@ -25,7 +25,8 @@
 				label: 'Go back',
 				id: 'back',
 				function: function () {
-					window.location.href = window.location.protocol + '//' + window.location.host + "/?from=cw";
+					window.location.href =
+						window.location.protocol + '//' + window.location.host + '/?from=cw';
 				}
 			},
 			{
@@ -34,15 +35,15 @@
 				function: function () {
 					// closing logic goes here
 				}
-			},
+			}
 		],
-		triggers=[]
+		triggers = []
 	) {
-		dialogOpen = !dialogOpen
+		dialogOpen = !dialogOpen;
 		dialogTitle = title;
 		dialogText = text;
 		dialogOptions = options;
-		dialogTriggers = triggers
+		dialogTriggers = triggers;
 	}
 </script>
 
@@ -53,7 +54,7 @@
 			<p>{dialogText}</p>
 			<div class="triggers">
 				<ul>
-					{#each dialogTriggers as trigger }
+					{#each dialogTriggers as trigger}
 						<li>{trigger}</li>
 					{/each}
 				</ul>
@@ -129,10 +130,10 @@
 	.button {
 		margin: 0 auto;
 		display: flex; /* Use flexbox layout */
-  		justify-content: center; /* Center horizontally */
-  		align-items: center; /* Center vertically */
+		justify-content: center; /* Center horizontally */
+		align-items: center; /* Center vertically */
 	}
-	
+
 	button {
 		border-radius: 16px;
 		border: solid 2px #525252;
@@ -170,5 +171,4 @@
 			margin-left: 16px;
 		}
 	}
-
 </style>

@@ -30,19 +30,18 @@
 			link: '/help'
 		}
 	];
-
 </script>
 
 <svelte:head>
 	<link rel="stylesheet" href="/global.css" />
 	<script type="text/javascript">
-		!function(){
-			setInterval(function(){
+		!(function () {
+			setInterval(function () {
 				console.log(
 					"You seem to know what you're doing, Why not look at some code? It's more readable than whatever you'll find here... https://github.com/RealFX-Code/prns.page"
-				)
-			},1000);
-		}()
+				);
+			}, 1000);
+		})();
 	</script>
 </svelte:head>
 
@@ -151,20 +150,16 @@
 	#username-input {
 		border: 0px;
 		border-bottom: 1px white solid;
-		background-color: rgba(0,0,0,0);
+		background-color: rgba(0, 0, 0, 0);
 		color: white;
 		margin-left: 0px;
-		padding-left: 0px;;
+		padding-left: 0px;
 		transition: 1s ease all;
 	}
 
 	@media screen and (max-width: 700px) {
-
 		#username-label {
 			display: none;
 		}
-
 	}
-
-
 </style>

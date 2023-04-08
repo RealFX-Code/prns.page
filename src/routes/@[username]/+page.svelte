@@ -33,37 +33,31 @@
 		}
 
 		// Actually get the card
-		const response = await fetch(
-			`https://pronouns.page/api/profile/get/${username}?version=2`
-		);
+		const response = await fetch(`https://pronouns.page/api/profile/get/${username}?version=2`);
 		prns = await response.json();
 
 		// Content warning
 		let showDialog = function (title, text, options, triggers) {
-			FullscreenDialogComponent.showContentWarningDialog(
-				title,
-				text,
-				options,
-				triggers
-			);
+			FullscreenDialogComponent.showContentWarningDialog(title, text, options, triggers);
 		};
 
-		let closeDialog = function(){
+		let closeDialog = function () {
 			FullscreenDialogComponent.closeDialog();
-		}
+		};
 
 		// check if `sensitive` array isn't empty, it's fucking wierd, i know.
 
 		if (Array(prns?.profiles?.[langPrns]?.sensitive)[0].length !== 0) {
 			showDialog(
-				"Content Warning",
-				"This profile contains the following content warnings:",
+				'Content Warning',
+				'This profile contains the following content warnings:',
 				[
 					{
 						label: 'Go back',
 						id: 'back',
 						function: function () {
-							window.location.href = window.location.protocol + '//' + window.location.host + "/?from=cw";
+							window.location.href =
+								window.location.protocol + '//' + window.location.host + '/?from=cw';
 						}
 					},
 					{
@@ -72,7 +66,7 @@
 						function: function () {
 							closeDialog();
 						}
-					},
+					}
 				],
 				prns?.profiles?.[langPrns]?.sensitive
 			);

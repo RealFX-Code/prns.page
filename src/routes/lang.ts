@@ -35,7 +35,7 @@ export interface langInterface {
 	ja?: language;
 	ko?: language;
 	lad?: language;
-	nl?: language
+	nl?: language;
 	no?: language;
 	pl?: language;
 	pt?: language;
@@ -52,7 +52,7 @@ export interface langInterface {
 
 // TODO: add translations for all languages avaiable in the "lang" interface.
 let lang: langInterface = {
-	en: en,
+	en: en
 };
 
 export { lang };
