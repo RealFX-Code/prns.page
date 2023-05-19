@@ -1,4 +1,5 @@
 import { en } from './lang/en';
+import { no } from './lang/no';
 
 export interface language {
 	username: {
@@ -52,7 +53,8 @@ export interface langInterface {
 
 // TODO: add translations for all languages avaiable in the "lang" interface.
 let lang: langInterface = {
-	en: en
+	en: en,
+	no: no
 };
 
 export { lang };
