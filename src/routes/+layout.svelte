@@ -33,6 +33,11 @@
 </script>
 
 <svelte:head>
+	<script
+		defer
+		data-domain="prns.realfx.rocks"
+		src="https://track.realfx.rocks/js/script.js"
+	></script>
 	<link rel="stylesheet" href="/global.css" />
 	<script type="text/javascript">
 		!(function () {
