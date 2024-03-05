@@ -72,6 +72,16 @@
 			);
 		}
 	});
+
+	let opinionList = [
+		{ opinion: 'yes', lang: 'Yes' },
+		{ opinion: 'close', lang: "Only if we're close" },
+		{ opinion: 'jokingly', lang: 'Jokingly' },
+		{ opinion: 'meh', lang: 'Meh' },
+		{ opinion: 'no', lang: 'No' },
+		{ opinion: 'missing', lang: 'Missing Icon'}
+	];
+
 </script>
 
 <FullscreenDialog bind:this={FullscreenDialogComponent} />
@@ -148,6 +158,20 @@
 	{:else}
 		<h1 id="loading">Loading</h1>
 	{/if}
+	<div class="container-small">
+		<div class="explanation child">
+			<h2>
+				The following "Legends/Opinions" are implemented:
+			</h2>
+			<ul>
+				{#each opinionList as opinion }
+					<li>
+						<ListItemComponent Value={opinion.lang} Opinion={opinion.opinion} />
+					</li>
+				{/each}
+			</ul>
+		</div>
+	</div>
 </main>
 
 <style>
@@ -224,6 +248,16 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: repeat(10, fit-content); /* 3, 1fr */
+		grid-column-gap: 16px;
+		grid-row-gap: 16px;
+	}
+
+	.container-small {
+		width: fit-content;
+		margin: 16px auto;
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: repeat(1, fit-content); /* 3, 1fr */
 		grid-column-gap: 16px;
 		grid-row-gap: 16px;
 	}
