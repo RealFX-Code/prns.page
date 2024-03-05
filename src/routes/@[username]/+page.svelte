@@ -115,25 +115,8 @@
 						<img
 							id="icon1"
 							alt=""
-							src="http://{new URL(Link).hostname}/favicon.png"
+							src="https://s2.googleusercontent.com/s2/favicons?domain={new URL(Link).href}"
 							height="16px"
-							onerror="(document.getElementById('icon1')).remove();"
-						/>
-						<!-- svelte-ignore a11y-missing-attribute -->
-						<img
-							id="icon2"
-							alt=""
-							src="http://{new URL(Link).hostname}/favicon.ico"
-							height="16px"
-							onerror="(document.getElementById('icon2')).remove();"
-						/>
-						<!-- svelte-ignore a11y-missing-attribute -->
-						<img
-							id="icon3"
-							alt=""
-							src="http://{new URL(Link).hostname}/favicon.svg"
-							height="16px"
-							onerror="(document.getElementById('icon3')).remove();"
 						/>
 						{Link}
 					</a>
