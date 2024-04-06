@@ -37,7 +37,7 @@
 	<script
 		defer
 		src='https://static.cloudflareinsights.com/beacon.min.js'
-		data-cf-beacon='{{"token": "2444487a15464617b6c3cb46649305a4"}}'
+		data-cf-beacon='{JSON.stringify({"token": "2444487a15464617b6c3cb46649305a4"})}'
 	></script>
 	<!-- End Cloudflare Web Analytics -->
 	<link rel="stylesheet" href="/global.css" />
