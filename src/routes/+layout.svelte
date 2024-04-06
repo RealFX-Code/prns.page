@@ -33,11 +33,13 @@
 </script>
 
 <svelte:head>
+	<!-- Cloudflare Web Analytics -->
 	<script
 		defer
-		data-domain="prns.realfx.rocks"
-		src="https://track.realfx.rocks/js/script.js"
+		src='https://static.cloudflareinsights.com/beacon.min.js'
+		data-cf-beacon='{{"token": "2444487a15464617b6c3cb46649305a4"}}'
 	></script>
+	<!-- End Cloudflare Web Analytics -->
 	<link rel="stylesheet" href="/global.css" />
 	<script type="text/javascript">
 		!(function () {
@@ -70,7 +72,7 @@
 			<a href={link.link}>{link.label}</a>
 		{/each}
 		<form id="username-form" on:submit={handleFormSubmit}>
-			<label id="username-label" for="input">https://prns.realfx.rocks/@</label>
+			<label id="username-label" for="username-input">https://prns.realfx.rocks/@</label>
 			<input id="username-input" placeholder="username" bind:value={$user.username} />
 		</form>
 	</nav>

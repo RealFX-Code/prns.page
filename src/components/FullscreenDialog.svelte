@@ -83,7 +83,7 @@
 		background-color: rgba(0, 0, 0, 0.75);
 		overflow: hidden;
 		z-index: 100;
-		backdrop-filter: blur(10px);
+		backdrop-filter: blur(15px);
 	}
 
 	.dialog {
@@ -94,12 +94,10 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		margin: 0;
-		background-color: #1b1b1b;
-		/* border-radius: 16px; */
+		border-radius: 16px;
 		border: solid 2px #525252;
 		padding: 24px;
 		background: rgba(66, 66, 66, 0.29);
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 		backdrop-filter: blur(6.7px);
 		-webkit-backdrop-filter: blur(6.7px);
 		border: 1px solid rgb(49, 49, 49);
@@ -155,10 +153,12 @@
 
 	#continue {
 		border-color: #52a552;
+		background-color: #52a55225;
 	}
 
 	#back {
 		border-color: #a55252;
+		background-color: #a5525225;
 	}
 
 	@media screen and (max-width: 512px) {

@@ -45,6 +45,14 @@
 			FullscreenDialogComponent.closeDialog();
 		};
 
+
+		// Fallback to english
+		// This only affects the content itself from the users pronouns.page
+		// UI lang is unaffected.
+		if(!prns?.profiles?.[langPrns]){
+			langPrns="en";
+		}
+
 		// check if `sensitive` array isn't empty, it's fucking wierd, i know.
 
 		if (Array(prns?.profiles?.[langPrns]?.sensitive)[0].length !== 0) {
@@ -57,7 +65,7 @@
 						id: 'back',
 						function: function () {
 							window.location.href =
-								window.location.protocol + '//' + window.location.host + '/?from=cw';
+								window.location.protocol + '//' + window.location.host + '/?from=cw&offending=' + window.location.href.split("@")[1];
 						}
 					},
 					{
