@@ -2,7 +2,6 @@
 	// route: " /@[username]"
 	// file : " /@[username]/+page.svelte "
 
-	/** @type {import('./$types').Pagedata} */
 	export let data;
 	const username = data.params.username;
 
@@ -10,9 +9,9 @@
 	import { page } from '$app/stores';
 	import { lang } from './../lang';
 
-	import ListItemComponent from '../../components/ListItemComponent.svelte';
-	import FlagComponent from '../../components/FlagComponent.svelte';
-	import FullscreenDialog from '../../components/FullscreenDialog.svelte';
+	import ListItemComponent from '$lib/components/ListItemComponent.svelte';
+	import FlagComponent from '$lib/components/FlagComponent.svelte';
+	import FullscreenDialog from '$lib/components/FullscreenDialog.svelte';
 
 	let prns;
 	let langPrns;

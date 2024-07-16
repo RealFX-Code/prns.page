@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	// route: " <layout> "
 	// file : " +layout.svelte "
 
@@ -54,14 +54,8 @@
 
 <div class="layout">
 	<noscript>
-		<div
-			class="wrapper"
-			style="width: fit-content; margin: 0 25%; padding: 16px; border: 2px white solid;"
-		>
-			You need to enable JavaScript to use this site. How to enable JavaScript: <a
-				style="color: #7777ff;"
-				href="https://enable-javascript.com/">https://enable-javascript.com/</a
-			>
+		<div class="wrapper" style="width: fit-content; margin: 0 25%; padding: 16px; border: 2px white solid;">
+			You need to enable JavaScript to use this site. How to enable JavaScript: <a style="color: #7777ff;" href="https://enable-javascript.com/">https://enable-javascript.com/</a>
 			<div class="section" style="margin-top: 8px;">
 				<p style="color: rgba(255,255,255,0.75);">"JavaScript is for the cool people" -me</p>
 			</div>
@@ -69,30 +63,31 @@
 	</noscript>
 	<nav>
 		{#each links as link}
-			<a href={link.link}>{link.label}</a>
+			<a href="{link.link}">{link.label}</a>
 		{/each}
-		<form id="username-form" on:submit={handleFormSubmit}>
+		<form id="username-form" on:submit="{handleFormSubmit}">
 			<label id="username-label" for="username-input">https://prns.realfx.rocks/@</label>
-			<input id="username-input" placeholder="username" bind:value={$user.username} />
+			<input id="username-input" placeholder="username" bind:value="{$user.username}" />
 		</form>
 	</nav>
 	<div class="content">
-		<slot />
+		<slot></slot>
 	</div>
 	<footer>
 		<div class="contrib">
 			<p>
-				<span class="color">Contributor? &rightarrow;</span>
+				<span class="color">Contributor? →</span>
 				Check out this project's
 				<a class="color" href="https://github.com/RealFX-Code/prns.page"> Github </a>
 				!
 			</p>
 		</div>
 		<div class="copy">
-			<p>&copy; {new Date().getFullYear()}, sometime</p>
+			<p>© {new Date().getFullYear()}, sometime</p>
 		</div>
 	</footer>
 </div>
+
 
 <style>
 	.color {

@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 	import { lang } from '../lang';
 	import { onMount } from 'svelte';
-	import BackToTop from '../../components/BackToTop.svelte';
+	import BackToTop from '$lib/components/BackToTop.svelte';
 
 	let langUI;
 	let terms;
