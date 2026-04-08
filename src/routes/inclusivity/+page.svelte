@@ -7,13 +7,17 @@
 	import { onMount } from 'svelte';
 	import BackToTop from '../../components/BackToTop.svelte';
 
+	/** @type {import('./$types').Pagedata} */
+	export let data;
+
 	let langUI;
 	let terms;
 	let langPrns;
 
 	onMount(async function () {
-		const response = await fetch('https://en.pronouns.page/api/inclusive');
-		terms = await response.json();
+		//const response = await fetch('https://en.pronouns.page/api/inclusive');
+		//terms = await response.json();
+		terms = data.response
 
 		langPrns = 'en';
 		langUI = lang['en'];

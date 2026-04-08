@@ -33,8 +33,9 @@
 		}
 
 		// Actually get the card
-		const response = await fetch(`https://pronouns.page/api/profile/get/${username}?version=2`);
-		prns = await response.json();
+		//const response = await fetch(`https://pronouns.page/api/profile/get/${username}?version=2`);
+		//prns = await response.json();
+		prns = data.response;
 
 		// Content warning
 		let showDialog = function (title, text, options, triggers) {

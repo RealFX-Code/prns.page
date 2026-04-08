@@ -98,12 +98,7 @@
 	.color {
 		--accent: 124, 58, 237;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-		background-image: var(--accent-gradient);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
+		color: rgb(124, 58, 237);
 	}
 
 	a {
